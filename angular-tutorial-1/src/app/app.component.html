@@ -1,0 +1,45 @@
+<div class="students-record">
+  <form [formGroup]="filter" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
+    <div class="mb-3 row justify-content-center align-items-center">
+      <div class="col-sm-6 d-flex">
+        <input type="text" class="form-control flex-grow-1" id="searchInput" placeholder="Enter search term" formControlName="searchInput">
+        <button type="submit" class="btn btn-primary ml-2">
+          <h6 class="m-0">Search</h6>
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <table class="table table-striped table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <th>No</th>
+        <th>Name</th>
+        <th>Image</th>
+        <th>City</th>
+        <th>Physics</th>
+        <th>Chemistry</th>
+        <th>Math</th>
+        <th>Computer</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of filteredStudents; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ student.name }}</td>
+        <td>
+          <img [src]="student.studentImage" class="img-fluid" style="width: 25px; height: 25px;" />
+        </td>
+        <td>{{ student.city }}</td>
+        <td>{{ student.physics }}</td>
+        <td>{{ student.chemistry }}</td>
+        <td>{{ student.math }}</td>
+        <td>{{ student.computer }}</td>
+      </tr>
+
+      <tr *ngIf="filteredStudents.length === 0">
+        <td colspan="8">No Records</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
